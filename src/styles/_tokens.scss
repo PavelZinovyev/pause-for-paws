@@ -1,0 +1,44 @@
+:root {
+    --brand: #cd6830;
+    --brand-light: #ffe7ce;
+    --brand-dark: #933a02;
+
+    --background: #fefaf7;
+    --foreground: #251710;
+
+    --card: #ffffff;
+    --card-foreground: #251710;
+
+    --popover: #ffffff;
+    --popover-foreground: #251710;
+
+    --primary: #cd6830;
+    --primary-foreground: #ffffff;
+
+    --secondary: #f8eadf;
+    --secondary-foreground: #4d3428;
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-text-primary: var(--foreground);
+    --color-text-secondary: var(--secondary-foreground);
+    --color-text-third: var(--brand);
+
+    --font-plus-jakarta: "Plus Jakarta Sans";
+    --font-family-base:
+        var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
+
+    --font-size-body: 16px;
+    --font-size-title-sm: 18px;
+    --font-size-title-md: 24px;
+    --font-size-title-lg: 40px;
+
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+
+    --z-index-base: 0;
+    --z-index-header: 1000;
+    --z-index-overlay: 1100;
+    --z-index-sheet: 1150;
+}
