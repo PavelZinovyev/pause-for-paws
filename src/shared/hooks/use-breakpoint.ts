@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { env } from "@/shared/env";
 
 const BREAKPOINTS = {
   mobile: 767,
