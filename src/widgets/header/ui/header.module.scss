@@ -5,12 +5,19 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 64px;
+    height: 72px;
     z-index: var(--z-index-header);
     backdrop-filter: blur(8px);
-    background: color-mix(in srgb, var(--color-background) 92%, transparent);
-    border-bottom: 1px solid
-        color-mix(in srgb, var(--color-foreground) 14%, transparent);
+    transition:
+        background-color 240ms ease,
+        border-color 240ms ease,
+        backdrop-filter 240ms ease;
+
+    &.scrolled {
+        background: color-mix(in srgb, var(--color-background) 2%, transparent);
+        border-bottom: 1px solid
+            color-mix(in srgb, var(--color-foreground) 14%, transparent);
+    }
 }
 
 .container {

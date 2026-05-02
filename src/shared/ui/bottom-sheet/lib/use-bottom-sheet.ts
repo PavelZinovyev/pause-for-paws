@@ -30,6 +30,7 @@ type UseBottomSheetParams = {
 type UseBottomSheetResult = {
   isMounted: boolean;
   portalRoot: HTMLElement | null;
+  overlayRef: RefObject<HTMLDivElement | null>;
   sheetRef: RefObject<HTMLDivElement | null>;
   bodyRef: RefObject<HTMLDivElement | null>;
   handleOverlayClick: () => void;
@@ -53,6 +54,7 @@ export function useBottomSheet({
     return ensureSheetRoot();
   }, [isClient]);
 
+  const overlayRef = useRef<HTMLDivElement | null>(null);
   const sheetRef = useRef<HTMLDivElement | null>(null);
   const bodyRef = useRef<HTMLDivElement | null>(null);
   const dragStateRef = useRef<DragState>(initialDragState);
@@ -87,7 +89,8 @@ export function useBottomSheet({
 
   const setOverlayProgress = useCallback((offsetPx: number) => {
     const sheet = sheetRef.current;
-    if (!sheet) return;
+    const overlay = overlayRef.current;
+    if (!sheet || !overlay) return;
 
     const closeThreshold = readCssVarNumber(
       sheet,
@@ -103,7 +106,7 @@ export function useBottomSheet({
     const progress = clamp(offsetPx / Math.max(closeThreshold, 1), 0, 1);
     const overlayAlpha = 1 - (1 - minOpacity) * progress;
 
-    sheet.style.setProperty(
+    overlay.style.setProperty(
       "--sheet-overlay-drag-opacity",
       overlayAlpha.toFixed(3),
     );
@@ -111,10 +114,11 @@ export function useBottomSheet({
 
   const resetDragStyles = useCallback(() => {
     const sheet = sheetRef.current;
+    const overlay = overlayRef.current;
     if (!sheet) return;
 
     sheet.style.setProperty("--sheet-drag-offset", "0px");
-    sheet.style.removeProperty("--sheet-overlay-drag-opacity");
+    overlay?.style.removeProperty("--sheet-overlay-drag-opacity");
   }, []);
 
   const startDrag = useCallback(
@@ -220,6 +224,8 @@ export function useBottomSheet({
       const isBodyAtTop = body ? body.scrollTop <= 0 : true;
       if (!isHandle && !isBodyAtTop) return;
 
+      if (!isHandle && body?.contains(target)) return;
+
       startDrag(event.pointerId, event.clientY);
     },
     [startDrag],
@@ -274,6 +280,7 @@ export function useBottomSheet({
   return {
     isMounted,
     portalRoot,
+    overlayRef,
     sheetRef,
     bodyRef,
     handleOverlayClick,

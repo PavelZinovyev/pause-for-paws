@@ -27,6 +27,7 @@ export const BottomSheet = ({
   const {
     isMounted,
     portalRoot,
+    overlayRef,
     sheetRef,
     bodyRef,
     handleOverlayClick,
@@ -46,6 +47,7 @@ export const BottomSheet = ({
 
   return createPortal(
     <div
+      ref={overlayRef}
       className={s.overlay}
       role="dialog"
       aria-modal="true"

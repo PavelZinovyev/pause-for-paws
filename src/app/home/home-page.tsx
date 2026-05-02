@@ -8,12 +8,12 @@ import s from "./home-page.module.scss";
 
 export const HomePage = () => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-  const { isMdUp, isHydrated } = useBreakpoints();
+  const { mobileLess, isHydrated } = useBreakpoints();
 
   const openDialog = () => setIsDialogOpen(true);
   const closeDialog = () => setIsDialogOpen(false);
 
-  const DialogComponent = !isHydrated || isMdUp ? Modal : BottomSheet;
+  const DialogComponent = !isHydrated || !mobileLess ? Modal : BottomSheet;
 
   return (
     <section className={s.root}>
@@ -37,5 +37,3 @@ export const HomePage = () => {
     </section>
   );
 };
-
-export default HomePage;

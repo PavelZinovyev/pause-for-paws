@@ -1,11 +1,17 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { ProfileIcon } from "../assets/profile-icon";
 import s from "./header.module.scss";
+import { useIsScrolled } from "../hooks";
+import cn from "classnames";
 
 export const Header = () => {
+  const isScrolled = useIsScrolled();
+
   return (
-    <header className={s.root} role="banner">
+    <header className={cn(s.root, { [s.scrolled]: isScrolled })} role="banner">
       <div className={s.container}>
         <Link href="/" className={s.logo} aria-label="Открыть главную страницу">
           Home

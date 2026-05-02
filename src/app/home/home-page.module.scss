@@ -4,6 +4,10 @@
     width: min(100%, 1120px);
     margin: 0 auto;
     padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
 }
 
 .title {
@@ -19,8 +23,7 @@
     align-items: center;
     justify-content: center;
     padding: 10px 14px;
-    border: 1px solid
-        color-mix(in srgb, var(--color-foreground) 12%, transparent);
+    border: 1px solid #ddd;
     border-radius: 10px;
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -33,11 +36,7 @@
 }
 
 .button:hover {
-    background-color: color-mix(
-        in srgb,
-        var(--color-background) 92%,
-        var(--color-foreground) 8%
-    );
+    background-color: #e0e0e0;
 }
 
 .button:active {
@@ -61,7 +60,7 @@
     margin: 0 0 16px;
     @include mix.text-section-body;
     line-height: 2;
-    color: color-mix(in srgb, var(--color-foreground) 80%, transparent);
+    color: #333;
 }
 
 @media (max-width: 767px) {

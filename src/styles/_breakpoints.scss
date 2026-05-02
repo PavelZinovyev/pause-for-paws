@@ -1,0 +1,37 @@
+// Base/Mobile-First Approach (default, applies to screens <= 767px)
+// No mixin needed for the base styles, they are the default.
+
+// Tablet Styles (Styles apply up to 1024px wide)
+
+@mixin media-mobile {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin media-tablet {
+    @media (max-width: 1024px) {
+        @content;
+    }
+}
+
+// Laptop Styles (Styles apply up to 1440px wide)
+@mixin media-laptop {
+    @media (max-width: 1440px) {
+        @content;
+    }
+}
+
+// Desktop Styles (Styles apply up to 1920px wide)
+@mixin media-desktop {
+    @media (max-width: 1920px) {
+        @content;
+    }
+}
+
+// Utility mixin to easily wrap any styles and apply the media query
+@mixin media($breakpoint-query) {
+    @media ($breakpoint-query) {
+        @content;
+    }
+}

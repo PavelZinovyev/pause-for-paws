@@ -23,6 +23,8 @@
 }
 
 .overlay {
+    --sheet-overlay-drag-opacity: 1;
+
     position: fixed;
     inset: 0;
     z-index: var(--z-index-sheet);
@@ -30,7 +32,12 @@
     align-items: end;
     justify-items: stretch;
     padding: 0;
-    background: rgba(10, 16, 28, 0.48);
+    background: rgba(
+        10,
+        16,
+        28,
+        calc(0.48 * var(--sheet-overlay-drag-opacity))
+    );
     backdrop-filter: blur(2px);
     overscroll-behavior: contain;
     opacity: 0;
@@ -46,11 +53,13 @@
     --sheet-drag-resistance: 0.92;
     --sheet-drag-max-offset: 420px;
 
+    display: flex;
+    flex-direction: column;
     width: 100%;
     max-width: 100%;
     height: min(400px, 78vh);
     max-height: 90dvh;
-    overflow: auto;
+    overflow: hidden;
     background: var(--color-background);
     color: var(--color-foreground);
     border: 1px solid
@@ -70,7 +79,6 @@
         opacity var(--sheet-drag-transition-duration)
             var(--sheet-drag-transition-ease);
     will-change: transform;
-    touch-action: none;
 }
 
 .handle {
@@ -135,6 +143,10 @@
 }
 
 .body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
     padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
 }
 
@@ -186,6 +198,13 @@
         animation: none;
         transition: none;
         opacity: 1;
+    }
+
+    .overlay {
+        transform: none;
+    }
+
+    .sheet {
         transform: translateY(var(--sheet-drag-offset));
     }
 }
