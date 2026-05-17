@@ -1,30 +1,6 @@
 @use "@/styles/mixins" as mix;
 
-@keyframes sheet-overlay-in {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes sheet-panel-in {
-    from {
-        opacity: 0;
-        transform: translateY(22px) scale(1);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
 .overlay {
-    --sheet-overlay-drag-opacity: 1;
-
     position: fixed;
     inset: 0;
     z-index: var(--z-index-sheet);
@@ -32,12 +8,7 @@
     align-items: end;
     justify-items: stretch;
     padding: 0;
-    background: rgba(
-        10,
-        16,
-        28,
-        calc(0.48 * var(--sheet-overlay-drag-opacity))
-    );
+    background: rgba(10, 16, 28, 1);
     backdrop-filter: blur(2px);
     overscroll-behavior: contain;
     opacity: 0;
@@ -45,14 +16,6 @@
 }
 
 .sheet {
-    --sheet-drag-offset: 0px;
-    --sheet-drag-transition-duration: 160ms;
-    --sheet-drag-transition-ease: cubic-bezier(0.22, 1, 0.36, 1);
-    --sheet-drag-close-threshold: 96px;
-    --sheet-drag-close-velocity-threshold: 0.55;
-    --sheet-drag-resistance: 0.92;
-    --sheet-drag-max-offset: 420px;
-
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -71,13 +34,11 @@
         0 -4px 14px rgba(0, 0, 0, 0.12);
     border-bottom: none;
     opacity: 0;
-    transform: translateY(calc(22px + var(--sheet-drag-offset)));
+    transform: translateY(22px);
     animation: sheet-panel-in 280ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
     transition:
-        transform var(--sheet-drag-transition-duration)
-            var(--sheet-drag-transition-ease),
-        opacity var(--sheet-drag-transition-duration)
-            var(--sheet-drag-transition-ease);
+        transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 200ms cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
 }
 
@@ -205,6 +166,28 @@
     }
 
     .sheet {
-        transform: translateY(var(--sheet-drag-offset));
+        transform: translateY(10px);
+    }
+}
+
+@keyframes sheet-overlay-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes sheet-panel-in {
+    from {
+        opacity: 0;
+        transform: translateY(22px) scale(1);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }

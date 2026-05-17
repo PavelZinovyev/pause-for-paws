@@ -24,11 +24,14 @@
 
 .overlay {
     position: fixed;
-    inset: 0;
-    z-index: var(--z-index-overlay);
-    display: grid;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
     padding: 24px;
     background: rgba(10, 16, 28, 0.52);
     backdrop-filter: blur(2px);
@@ -38,15 +41,13 @@
 }
 
 .modal {
-    width: min(100%, 640px);
-    max-height: min(85vh, 760px);
-    overflow: auto;
-    background: var(--color-background);
-    color: var(--color-foreground);
-    border: 1px solid
-        color-mix(in srgb, var(--color-foreground) 12%, transparent);
+    width: 640px;
+    max-height: 760px;
+    overflow-y: auto;
+    background: #1a232e;
+    color: #f9fafb;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 16px;
-    -webkit-overflow-scrolling: touch;
     box-shadow:
         0 20px 50px rgba(0, 0, 0, 0.22),
         0 4px 18px rgba(0, 0, 0, 0.14);
@@ -64,7 +65,7 @@
     justify-content: flex-end;
     gap: 12px;
     padding: 16px 20px;
-    background: color-mix(in srgb, var(--color-background) 96%, transparent);
+    background: rgba(255, 255, 255, 0.96);
 }
 
 .title {
@@ -98,12 +99,8 @@
 
     .modal {
         width: 100vw;
-        width: 100dvw;
         height: 100vh;
-        height: 100dvh;
-        max-height: none;
         border-radius: 0;
-        border: none;
         box-shadow: none;
         transform: translateY(10px);
     }

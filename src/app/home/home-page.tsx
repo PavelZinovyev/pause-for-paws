@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { BottomSheet } from "@/shared/ui/bottom-sheet";
 import { useBreakpoints } from "@/shared/hooks";
 import { Modal } from "@/shared/ui/modal";
 import s from "./home-page.module.scss";
 
 export const HomePage = () => {
-  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { mobileLess, isHydrated } = useBreakpoints();
 
   const openDialog = () => setIsDialogOpen(true);
