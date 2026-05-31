@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { BottomSheet } from "@/shared/ui/bottom-sheet";
-import { useBreakpoints } from "@/shared/hooks";
-import { Modal } from "@/shared/ui/modal";
-import s from "./home-page.module.scss";
+import React, { useState } from 'react';
+import { BottomSheet } from '@/shared/ui/bottom-sheet';
+import { useBreakpoints } from '@/shared/hooks';
+import { Modal } from '@/shared/ui/modal';
+import s from './home-page.module.scss';
 
 export const HomePage = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -16,8 +16,8 @@ export const HomePage = () => {
   const DialogComponent = !isHydrated || !mobileLess ? Modal : BottomSheet;
 
   return (
-    <section className={s.root}>
-      <h1 className={s.title}>main page</h1>
+    <section>
+      <h1>main page</h1>
 
       <button type="button" onClick={openDialog} className={s.button}>
         Открыть форму заявки
@@ -30,8 +30,8 @@ export const HomePage = () => {
       >
         <h2 className={s.modalTitle}>Оставьте заявку</h2>
         <p className={s.modalText}>
-          Выберите тип животного, укажите пол, загрузите фото и оставьте номер
-          телефона с комментарием.
+          Выберите тип животного, укажите пол, загрузите фото и оставьте номер телефона с
+          комментарием.
         </p>
       </DialogComponent>
     </section>
